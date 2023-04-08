@@ -38,7 +38,11 @@ int main(int argc, char** argv)
 
 
 	//extract files from archive
-	for (auto& f : args->files_to_extract)
+	if (args->files_to_extract.size() == 1 and (*args->files_to_extract.begin()) == "*")
+	{
+		file.extractall(args->extracting_place);
+	}
+	else for (auto& f : args->files_to_extract)
 	{
 		if (file.has_file(f))
 		{
